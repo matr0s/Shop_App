@@ -5,11 +5,12 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String screenArgs = ModalRoute.of(context).settings.arguments;
-
+    final String productId =
+        ModalRoute.of(context).settings.arguments as String;
+// Here wi are going to get all the data for my product based on ID
     return Scaffold(
       appBar: AppBar(
-        title: Text(screenArgs),
+        title: Text(productId),
       ),
     );
   }
