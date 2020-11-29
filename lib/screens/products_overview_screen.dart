@@ -43,7 +43,7 @@ class ProductsOverviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Electromag'),
+        title: Text('ElectroMag'),
       ),
       body: GridView.builder(
         padding: EdgeInsets.all(10.0),

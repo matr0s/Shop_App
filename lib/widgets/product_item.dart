@@ -9,25 +9,30 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: GridTile(
-        footer: GridTileBar(
-          leading: IconButton(
-            icon: Icon(Icons.favorite),
-            onPressed: () {},
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15.0),
+              child: GridTile(
+          footer: GridTileBar(
+            leading: IconButton(
+              icon: Icon(Icons.favorite),
+              onPressed: () {},
+              color: Theme.of(context).accentColor,
+            ),
+            backgroundColor: Colors.black87,
+            title: Text(
+              title,
+              textAlign: TextAlign.center,
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {},
+              color: Theme.of(context).accentColor,
+            ),
           ),
-          backgroundColor: Colors.black54,
-          title: Text(
-            title,
-            textAlign: TextAlign.center,
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.cover,
           ),
-          trailing: IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {},
-          ),
-        ),
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.cover,
         ),
       ),
     );
