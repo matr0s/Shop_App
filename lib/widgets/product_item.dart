@@ -12,20 +12,23 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    final product = Provider.of<Product>(context, listen: false);
     return Container(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
         child: GridTile(
           footer: GridTileBar(
-            leading: IconButton(
-              icon: Icon(
-                product.isFavorite ? Icons.favorite : Icons.favorite_border,
+            leading: Consumer<Product>(
+              builder: (BuildContext context, product, Widget child) =>
+                  IconButton(
+                icon: Icon(
+                  product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                ),
+                onPressed: () {
+                  product.toggleFaveStatus();
+                },
+                color: Theme.of(context).accentColor,
               ),
-              onPressed: () {
-                product.toggleFaveStatus();
-              },
-              color: Theme.of(context).accentColor,
             ),
             backgroundColor: Colors.black87,
             title: Text(

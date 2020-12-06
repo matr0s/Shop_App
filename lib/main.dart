@@ -10,8 +10,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: ProductsProvider(),
+    return ChangeNotifierProvider(
+      create: (ctx) => ProductsProvider(),
       child: MaterialApp(
         title: 'ElectroMag',
         theme: ThemeData(
@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
-        //home: ProductsOverviewScreen(),
         initialRoute: ProductsOverviewScreen.routeId,
         routes: {
           ProductsOverviewScreen.routeId: (context) => ProductsOverviewScreen(),
