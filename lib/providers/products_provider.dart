@@ -39,16 +39,35 @@ class ProductsProvider with ChangeNotifier {
     ),
   ];
 
-  UnmodifiableListView<Product> get items {
-    return UnmodifiableListView(_items);
+  // var _isFaveOnly = false;
+
+  List<Product> get items {
+    // if (_isFaveOnly) {
+    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
+    // }
+    return [..._items];
   }
+
+  List<Product> get faveItems {
+    return _items.where((prodItem) => prodItem.isFavorite).toList();
+  }
+
+  // void showFaveOnly() {
+  //   _isFaveOnly = true;
+  //   notifyListeners();
+  // }
+
+  // void showAll() {
+  //   _isFaveOnly = false;
+  //   notifyListeners();
+  // }
 
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
   void addProduct() {
-   // _items.add(value);
+    // _items.add(value);
     notifyListeners();
   }
 }
