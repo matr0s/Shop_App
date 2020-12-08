@@ -3,8 +3,8 @@ import 'package:flutter_complete_guide/providers/orders.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/cart.dart' show Cart;
-import '../widgets/cart_item.dart';
 import '../providers/orders.dart';
+import '../widgets/cart_item.dart';
 
 class CartScreen extends StatelessWidget {
   static const routeId = '/cart-screen';
@@ -42,9 +42,8 @@ class CartScreen extends StatelessWidget {
                   FlatButton(
                     onPressed: () {
                       /// =================
-                      Provider.of<Orders>(context, listen: false)
-                          .addOrder(cart.items.values, cart.totalAmount);
-
+                      Provider.of<Orders>(context, listen: false).addOrder(
+                          cart.items.values.toList(), cart.totalAmount);
                       /// =================
                       cart.clearCart();
                     },
