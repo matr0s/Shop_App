@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
 
 import './screens/product_details_screen.dart';
@@ -19,14 +20,17 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'ElectroMag',
         theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.deepOrange,
-          fontFamily: 'Lato',
-        ),
+            primarySwatch: Colors.purple,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'Lato',
+            textTheme: TextTheme(
+              headline6: TextStyle(color: Colors.white, fontSize: 18.0),
+            )),
         initialRoute: ProductsOverviewScreen.routeId,
         routes: {
           ProductsOverviewScreen.routeId: (context) => ProductsOverviewScreen(),
           ProductDetailsScreen.routeId: (context) => ProductDetailsScreen(),
+          CartScreen.routeId: (context) => CartScreen(),
         },
       ),
     );
