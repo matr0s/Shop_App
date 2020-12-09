@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../providers/cart.dart';
 
+//
+// Cart item => One product with all the data about
+//
 class CartItem extends StatelessWidget {
   final String id;
   final String productId;

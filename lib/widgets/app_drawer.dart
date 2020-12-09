@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../screens/orders_screen.dart';
 import '../screens/products_overview_screen.dart';
 
+//
+// AppDwawer widget we can use to switch Shop <-> Orders
+//
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

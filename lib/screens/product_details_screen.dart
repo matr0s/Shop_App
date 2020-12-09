@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import '../providers/products_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/products_provider.dart';
+
+//
+// Product interface
+//
 class ProductDetailsScreen extends StatelessWidget {
+  // Screen id - special for named routes config
   static const routeId = '/product-details';
   @override
   Widget build(BuildContext context) {

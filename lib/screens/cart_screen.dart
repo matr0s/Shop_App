@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/providers/orders.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/cart.dart' show Cart;
 import '../providers/orders.dart';
+import '../providers/cart.dart' show Cart;
 import '../widgets/cart_item.dart';
 
+//
+// Screen to review cart items and data
+//
 class CartScreen extends StatelessWidget {
+  // Screen id - special for named routes config
   static const routeId = '/cart-screen';
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -41,11 +45,11 @@ class CartScreen extends StatelessWidget {
                   ),
                   FlatButton(
                     onPressed: () {
-                      /// =================
+                      /// Provider which add orders to the Orders List
                       Provider.of<Orders>(context, listen: false).addOrder(
                           cart.items.values.toList(), cart.totalAmount);
 
-                      /// =================
+                      /// Cleaning cart after order complete
                       cart.clearCart();
                     },
                     textColor: Theme.of(context).primaryColor,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//
+// Separate widget to show product qty in the Cart
+//
 class Badge extends StatelessWidget {
   const Badge({
     Key key,

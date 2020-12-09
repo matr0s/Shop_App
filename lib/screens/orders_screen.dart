@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/widgets/app_drawer.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/orders.dart' show Orders;
+import '../widgets/app_drawer.dart';
 import '../widgets/order_item.dart';
 
+//
+// Screen where you can find orders you made before. Listview based on OrderItem Widget
+//
 class OrdersScreen extends StatelessWidget {
+  // Screen id - special for named routes config
   static const routeId = '/orders';
   @override
   Widget build(BuildContext context) {

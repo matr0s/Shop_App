@@ -1,8 +1,10 @@
-import 'dart:collection';
 import 'package:flutter/material.dart';
 
 import 'product.dart';
 
+//
+// Provider for product list we have in our Shop Catalog and methods for this providers
+//
 class ProductsProvider with ChangeNotifier {
   List<Product> _items = [
     Product(
@@ -39,33 +41,22 @@ class ProductsProvider with ChangeNotifier {
     ),
   ];
 
-  // var _isFaveOnly = false;
-
+// Get products list copy. Secur direct and external access
   List<Product> get items {
-    // if (_isFaveOnly) {
-    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
-    // }
     return [..._items];
   }
 
+// Generate list of products with Fave flag.
   List<Product> get faveItems {
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
 
-  // void showFaveOnly() {
-  //   _isFaveOnly = true;
-  //   notifyListeners();
-  // }
-
-  // void showAll() {
-  //   _isFaveOnly = false;
-  //   notifyListeners();
-  // }
-
+// Search product by ID
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
+// Not sure :) I am going to use this method in case we add New Product creation feature
   void addProduct() {
     // _items.add(value);
     notifyListeners();
