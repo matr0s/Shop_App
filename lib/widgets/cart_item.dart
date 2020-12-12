@@ -20,6 +20,32 @@ class CartItem extends StatelessWidget {
     return Dismissible(
       key: ValueKey(id),
       direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) {
+        return showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: Text(
+                'Are you sure???',
+                style: TextStyle(color: Colors.black),
+                textAlign: TextAlign.center,
+              ),
+              content: Text('Please, be careful!!'),
+              actions: [
+                FlatButton(
+                  color: Colors.green,
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text('Yeap'),
+                ),
+                FlatButton(
+                  color: Colors.red,
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text('No'),
+                ),
+              ]),
+        );
+      },
       onDismissed: (direction) {
         Provider.of<Cart>(context, listen: false).removeItem(productId);
       },
