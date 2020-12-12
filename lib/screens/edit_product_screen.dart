@@ -22,7 +22,18 @@ class _EditProductScreenState extends State<EditProductScreen> {
             children: [
               TextFormField(
                 decoration: InputDecoration(labelText: 'Title'),
-                textInputAction: TextInputAction.next
+                textInputAction: TextInputAction.next,
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Price'),
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+            
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Decription'),
+                maxLines: 3,
+                keyboardType: TextInputType.multiline,
               ),
             ],
           ),
