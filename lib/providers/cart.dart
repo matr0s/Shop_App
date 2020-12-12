@@ -70,6 +70,26 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
+  void removeSingleItem(String productId) {
+    if (!_items.containsKey(productId)) {
+      return;
+    }
+    if (_items[productId].qty > 1) {
+      _items.update(
+        productId,
+        (existingCartItem) => CartItem(
+          id: existingCartItem.id,
+          title: existingCartItem.title,
+          qty: existingCartItem.qty - 1,
+          price: existingCartItem.price,
+        ),
+      );
+    } else {
+      _items.remove(productId);
+    }
+    notifyListeners();
+  }
+
 // Method which allows us to remove product from the Shopping Cart list
   void removeItem(String itemId) {
     _items.remove(itemId);
