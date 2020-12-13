@@ -45,7 +45,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void _saveForm() {
+    var _isValid = _form.currentState.validate();
+    if (!_isValid) {
+      return;
+    }
     _form.currentState.save();
+    print(_form.currentState.validate());
+
     print(_editedProduct.title);
     print(_editedProduct.description);
     print(_editedProduct.price);
@@ -73,6 +79,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
               TextFormField(
                 decoration: InputDecoration(labelText: 'Title'),
                 textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter a Title!';
+                  } else if (value.length < 5) {
+                    return 'Too short title';
+                  }
+                  return null;
+                },
                 onSaved: (newValue) {
                   _editedProduct = Product(
                     id: null,
