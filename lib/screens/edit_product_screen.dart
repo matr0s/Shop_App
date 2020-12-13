@@ -40,6 +40,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
   void _updateImgUrl() {
     if (!_imageUrlFocusNode.hasFocus) {
+      if (!_imageUrlContoller.text.startsWith('http') &&
+          !_imageUrlContoller.text.startsWith('hhtps')) {
+        return;
+      }
       setState(() {});
     }
   }
@@ -101,6 +105,18 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 decoration: InputDecoration(labelText: 'Price'),
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter a price';
+                  }
+                  if (double.tryParse(value) == null) {
+                    return 'Please enter a valid number';
+                  }
+                  if (double.parse(value) <= 0) {
+                    return 'Price should be greater than zero';
+                  }
+                  return null;
+                },
                 onSaved: (newValue) {
                   _editedProduct = Product(
                     id: null,
@@ -115,6 +131,15 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 decoration: InputDecoration(labelText: 'Decription'),
                 maxLines: 3,
                 keyboardType: TextInputType.multiline,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter desctiption';
+                  }
+                  if (value.length < 10) {
+                    return 'Description should be longer than 10 char';
+                  }
+                  return null;
+                },
                 onSaved: (newValue) {
                   _editedProduct = Product(
                     id: null,
@@ -151,6 +176,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       focusNode: _imageUrlFocusNode,
                       onFieldSubmitted: (_) {
                         _saveForm();
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter an image URL';
+                        }
+                        if (!value.startsWith('http') &&
+                            !value.startsWith('hhtps')) {
+                          return 'Enter a valid URL';
+                        }
+                        return null;
                       },
                       onSaved: (newValue) {
                         _editedProduct = Product(
