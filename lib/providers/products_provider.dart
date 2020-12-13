@@ -66,9 +66,19 @@ class ProductsProvider with ChangeNotifier {
       imageUrl: product.imageUrl,
     );
     _items.add(newProduct);
-    // secod scenario: 
-    // * _items.insert(0, newProduct);   
+    // secod scenario:
+    // * _items.insert(0, newProduct);
     //at the start of teh lust
     notifyListeners();
+  }
+
+  void updateProduct(String id, Product newProduct) {
+    final prodIndex = _items.indexWhere((prod) => prod.id == id);
+    if (prodIndex >= 0) {
+      _items[prodIndex] = newProduct;
+      notifyListeners();
+    } else {
+      print('...');
+    }
   }
 }
