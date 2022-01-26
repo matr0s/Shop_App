@@ -26,12 +26,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'ElectroMag',
         theme: ThemeData(
-            primarySwatch: Colors.purple,
-            accentColor: Colors.deepOrange,
-            fontFamily: 'Lato',
-            textTheme: TextTheme(
-              headline6: TextStyle(color: Colors.white, fontSize: 18.0),
-            )),
+          fontFamily: 'Lato',
+          textTheme: TextTheme(
+            headline6: TextStyle(color: Colors.white, fontSize: 18.0),
+          ),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+              .copyWith(secondary: Colors.deepOrange),
+        ),
         initialRoute: ProductsOverviewScreen.routeId,
         routes: {
           ProductsOverviewScreen.routeId: (context) => ProductsOverviewScreen(),

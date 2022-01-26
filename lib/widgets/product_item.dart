@@ -24,7 +24,7 @@ class ProductItem extends StatelessWidget {
                 onPressed: () {
                   product.toggleFaveStatus();
                 },
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
             backgroundColor: Colors.black87,
@@ -36,8 +36,8 @@ class ProductItem extends StatelessWidget {
               icon: Icon(Icons.shopping_cart),
               onPressed: () {
                 cart.addItem(product.id, product.title, product.price);
-                Scaffold.of(context).hideCurrentSnackBar();
-                Scaffold.of(context).showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(
                     '${product.title} added to the Shoping Cart!!',
                   ),
@@ -50,7 +50,7 @@ class ProductItem extends StatelessWidget {
                   ),
                 ));
               },
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           child: GestureDetector(

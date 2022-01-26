@@ -31,15 +31,17 @@ class CartItem extends StatelessWidget {
               ),
               content: Text('Please, be careful!!'),
               actions: [
-                FlatButton(
-                  color: Colors.green,
+                TextButton(
+                  style: TextButton.styleFrom(
+                      primary: Colors.white, backgroundColor: Colors.green),
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
                   child: Text('Yeap'),
                 ),
-                FlatButton(
-                  color: Colors.red,
+                TextButton(
+                  style: TextButton.styleFrom(
+                      primary: Colors.white, backgroundColor: Colors.red),
                   onPressed: () => Navigator.of(context).pop(false),
                   child: Text('No'),
                 ),
@@ -68,7 +70,7 @@ class CartItem extends StatelessWidget {
             leading: CircleAvatar(
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
-                child: FittedBox(child: Text('${price}')),
+                child: FittedBox(child: Text('$price')),
               ),
             ),
             title: Text(title),
