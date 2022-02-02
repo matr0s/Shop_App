@@ -61,7 +61,7 @@ class ProductsProvider with ChangeNotifier {
 // Not sure :) I am going to use this method in case we add New Product creation feature
   Future addProduct(Product product) {
     final url = Uri.parse(
-        'https://shop-app-matros-default-rtdb.europe-west1.firebasedatabase.app/products');
+        'https://shop-app-matros-default-rtdb.europe-west1.firebasedatabase.app/products.json');
     return http
         .post(
       url,
