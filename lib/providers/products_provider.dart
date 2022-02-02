@@ -59,34 +59,43 @@ class ProductsProvider with ChangeNotifier {
   }
 
 // Not sure :) I am going to use this method in case we add New Product creation feature
-  Future<void> addProduct(Product product) {
+  Future addProduct(Product product) {
     final url = Uri.parse(
-        'https://shop-app-matros-default-rtdb.europe-west1.firebasedatabase.app/products.json');
+        'https://shop-app-matros-default-rtdb.europe-west1.firebasedatabase.app/products');
     return http
         .post(
       url,
-      body: json.encode({
-        'title': product.title,
-        'description': product.description,
-        'price': product.price,
-        'imageUrl': product.imageUrl,
-        'isFavorite': product.isFavorite
-      }),
+      body: json.encode(
+        {
+          'title': product.title,
+          'description': product.description,
+          'price': product.price,
+          'imageUrl': product.imageUrl,
+          'isFavorite': product.isFavorite
+        },
+      ),
     )
-        .then((response) {
-      final newProduct = Product(
-        id: json.decode(response.body)['name'],
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        imageUrl: product.imageUrl,
-      );
-      _items.add(newProduct);
-      // secod scenario:
-      // * _items.insert(0, newProduct);
-      //at the start of the list
-      notifyListeners();
-    });
+        .then(
+      (response) {
+        final newProduct = Product(
+          id: json.decode(response.body)['name'],
+          title: product.title,
+          description: product.description,
+          price: product.price,
+          imageUrl: product.imageUrl,
+        );
+        _items.add(newProduct);
+        // secod scenario:
+        // * _items.insert(0, newProduct);
+        //at the start of the list
+        notifyListeners();
+      },
+    ).catchError(
+      (error) {
+        // print(error);
+        throw error;
+      },
+    );
   }
 
   void updateProduct(String id, Product newProduct) {
