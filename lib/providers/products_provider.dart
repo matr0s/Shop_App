@@ -58,44 +58,51 @@ class ProductsProvider with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-// Not sure :) I am going to use this method in case we add New Product creation feature
-  Future addProduct(Product product) {
+  Future<void> fetchAndSetProducts() async {
     final url = Uri.parse(
         'https://shop-app-matros-default-rtdb.europe-west1.firebasedatabase.app/products.json');
-    return http
-        .post(
-      url,
-      body: json.encode(
-        {
-          'title': product.title,
-          'description': product.description,
-          'price': product.price,
-          'imageUrl': product.imageUrl,
-          'isFavorite': product.isFavorite
-        },
-      ),
-    )
-        .then(
-      (response) {
-        final newProduct = Product(
-          id: json.decode(response.body)['name'],
-          title: product.title,
-          description: product.description,
-          price: product.price,
-          imageUrl: product.imageUrl,
-        );
-        _items.add(newProduct);
-        // secod scenario:
-        // * _items.insert(0, newProduct);
-        //at the start of the list
-        notifyListeners();
-      },
-    ).catchError(
-      (error) {
-        // print(error);
-        throw error;
-      },
-    );
+    try {
+      final response = await http.get(url);
+      print(json.decode(response.body));
+    } catch (error) {
+      throw (error);
+    }
+  }
+
+// Not sure :) I am going to use this method in case we add New Product creation feature
+  Future addProduct(Product product) async {
+    final url = Uri.parse(
+        'https://shop-app-matros-default-rtdb.europe-west1.firebasedatabase.app/products.json');
+
+    try {
+      final response = await http.post(
+        url,
+        body: json.encode(
+          {
+            'title': product.title,
+            'description': product.description,
+            'price': product.price,
+            'imageUrl': product.imageUrl,
+            'isFavorite': product.isFavorite
+          },
+        ),
+      );
+      final newProduct = Product(
+        id: json.decode(response.body)['name'],
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+      );
+      _items.add(newProduct);
+      // secod scenario:
+      // * _items.insert(0, newProduct);
+      //at the start of the list
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw error;
+    }
   }
 
   void updateProduct(String id, Product newProduct) {
